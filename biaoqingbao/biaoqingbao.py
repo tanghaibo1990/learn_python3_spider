@@ -13,7 +13,7 @@ class DownloadBiaoqingbao(Thread):
     def __init__(self, queue, path):
         Thread.__init__(self)
         self.queue = queue
-        self.path = '/home/wistbean/biaoqingbao/'
+        self.path = path
         if not os.path.exists(path):
             os.makedirs(path)
 
@@ -32,6 +32,7 @@ def download_biaoqingbaos(url, path):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'lxml')
     img_list = soup.find_all('img', class_='ui image lazy')
+
 
     for img in img_list:
         image = img.get('data-original')
@@ -56,7 +57,8 @@ if __name__ == '__main__':
     urls = [_url.format(page=page) for page in range(1, 4328+1)]
 
     queue = Queue()
-    path = '/home/wistbean/biaoqingbao/'
+    # path = '/home/wistbean/biaoqingbao/'
+    path = 'E:/biaoqingbao/'
 
     # 创建线程
     for x in range(10):

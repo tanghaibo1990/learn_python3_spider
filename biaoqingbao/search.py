@@ -10,7 +10,9 @@ imgs = []
 
 def searchImage(text):
     print('收到关键词: ', text)
-    for name in glob.glob('/home/wistbean/biaoqingbao/*'+text+'*.jpg'):
+    path = 'E:/biaoqingbao/'
+    # path = '/home/wistbean/biaoqingbao/'
+    for name in glob.glob(path + '*'+text+'*.jpg'):
         imgs.append(name)
 
 
