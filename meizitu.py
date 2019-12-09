@@ -67,6 +67,7 @@ def download_Pic(title, image_list):
         os.mkdir(title)
     j = 1
     # 下载图片
+<<<<<<< HEAD
     # tasks=[]
     # asyncio.set_event_loop(asyncio.new_event_loop())
     # loop = asyncio.get_event_loop()
@@ -78,6 +79,19 @@ def download_Pic(title, image_list):
         # tasks.append(task)
         j += 1
     # loop.run_until_complete(asyncio.wait(tasks))
+=======
+    tasks=[]
+    asyncio.set_event_loop(asyncio.new_event_loop())
+    loop = asyncio.get_event_loop()
+    for item in image_list:
+        filename = '%s/%s.jpg' % (title, str(j))
+        print('downloading....%s : NO.%s' % (title, str(j)))
+        # download_pic_item(filename,item)
+        task = asyncio.ensure_future(async_download_pic_item(filename,item))
+        tasks.append(task)
+        j += 1
+    loop.run_until_complete(asyncio.wait(tasks))
+>>>>>>> e187a063848fdfa27f60c708b872c7d8bfaaccec
 
     # with concurrent.futures.ProcessPoolExecutor(max_workers=5) as exector:
     #     for item in image_list:
